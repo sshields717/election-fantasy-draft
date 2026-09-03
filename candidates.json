@@ -1,0 +1,7 @@
+[
+    {"name": "J.D. Vance", "party": "Republican", "starting_price": 50},
+    {"name": "Alexandria Ocasio-Cortez", "party": "Democrat", "starting_price": 30},
+    {"name": "Marco Rubio", "party": "Republican", "starting_price": 20},
+    {"name": "Gavin Newsom", "party": "Democrat", "starting_price": 25},
+    {"name": "Ron DeSantis", "party": "Republican", "starting_price": 15}
+]
