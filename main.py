@@ -13,14 +13,14 @@ def main():
 
     # Create a league with a name, empty players list, and candidates list
     league_name = input("Enter the name of your league: ")
-    league_budget = int(input("Enter the budget for each player: "))
+    league_budget = int(input("Enter the budget for each player (hit enter for default of 100): ") or "100")
     league = League(league_name, [], league_budget, [])
     league.add_candidates()
 
     # Add players to the league
     num_players = int(input("Enter the number of players in the league (up to 5): "))
     for i in range(num_players):
-        player_name = input(f"Enter the name of player {i + 1}: ")
+        player_name = input(f"Enter the name of player (type Human for human player) {i + 1}: ")
         player = Player(player_name, league.budget_per_player)
         league.add_player(player)
 
