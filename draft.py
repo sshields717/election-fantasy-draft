@@ -90,7 +90,7 @@ class Draft:
                     if bid_amount <= 0:
                         print("Bid must be a positive integer.")
                         continue
-                    if bid_amount >= player.budget_remaining():
+                    if bid_amount > player.budget_remaining():
                         print(f"Bid exceeds your remaining budget of ${player.budget_remaining()}.")
                         continue
                     return bid_amount
