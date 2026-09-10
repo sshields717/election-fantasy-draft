@@ -6,6 +6,7 @@
 # The order of players is randomized each round.
 import random
 from bid import Bid
+import time
 
 class Draft:
     def __init__(self, league):
@@ -36,6 +37,7 @@ class Draft:
             self.priced_out_players.clear()  # Reset players priced out for this candidate
 
             print(f"Starting bidding for {candidate.name} (Starting Price: {candidate.starting_price})")
+            time.sleep(1)
 
             # Continue bidding until all players have passed or are priced out, or until a bid is made and all others have passed
             while len(self.passed_players | self.priced_out_players) < (len(self.bidding_order) - 1 if self.current_bid else len(self.bidding_order)):
@@ -52,6 +54,7 @@ class Draft:
                     if player.budget_remaining() < self.minimum_bid():
                         print(f"{player.name} is priced out for {self.current_candidate.name}.")
                         self.priced_out_players.add(player)
+                        time.sleep(1)
                         continue
 
                     bid_amount = self.get_player_bid(player)
@@ -59,21 +62,26 @@ class Draft:
                     if bid_amount is None:
                         print(f"{player.name} has passed.")
                         self.passed_players.add(player)
+                        time.sleep(1)
                     # if a player enters a bid that is lower than the current bid, it should not be accepted, and the player should be prompted to bid again or pass.
                     elif bid_amount >= self.minimum_bid():
                         self.current_bid = Bid(candidate, bid_amount, player)
                         print(f"{player.name} bids ${bid_amount} for {candidate.name}.")
                         # Reset passed players since a new bid was made
                         self.passed_players.clear()
+                        time.sleep(1)
                     else:
                         print(f"{player.name}'s bid of ${bid_amount} is too low. Must be higher than current bid.")
+                        time.sleep(1)
 
             if self.current_bid:
                 winning_player = self.current_bid.player
                 winning_player.roster.append(self.current_bid)
                 print(f"{winning_player.name} wins {candidate.name} for ${self.current_bid.bid_amount}.")
+                time.sleep(1)
             else:
                 print(f"No bids for {candidate.name}. Candidate not rostered.")
+                time.sleep(1)
 
 
     def get_player_bid(self, player):
@@ -101,6 +109,7 @@ class Draft:
             if player.budget_remaining() < self.minimum_bid():
                 print(f"{player.name} cannot bid due to insufficient budget.")
                 self.priced_out_players.add(player)
+                time.sleep(1)
                 return None
  
             if random.choice([True, False]):
